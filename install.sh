@@ -13,4 +13,4 @@ case $RESPONSE in
 	*)
 		echo "Install cancelled." >&2
 		;;
-esac.
+esac
