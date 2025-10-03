@@ -1,16 +1,14 @@
 #!/bin/sh
 
-source ./install_arch.sh
+STEP=$(dialog --title "ARCH LINUX" --menu "Select procedure" 8 45 0 1 "Network setup" 2>&1 >/dev/tty)
 
-dialog --title "Arch Linux Install" --yes-label "Proceed" --no-label "Cancel" --yesno "\nhttps://github.com/grimpirate/archinstall" 6 45
-
-RESPONSE=$?
-
-case $RESPONSE in
-	0)
-		arch_install
-		;;
+case STEP in
+	1)
+		curl -fsSL https://github.com/grimpirate/archinstall/raw/refs/heads/main/network.sh | sh
+	;;
 	*)
-		echo "Install cancelled." >&2
-		;;
+		dialog --title "EXIT" --msgbox "Install cancelled" 6 45
+	;;
 esac
+
+exit 0
